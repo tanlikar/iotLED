@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">iotLED</string>
+    <string name="enter_integer">Enter Integer</string>
+    <string name="send">Send</string>
+</resources>
