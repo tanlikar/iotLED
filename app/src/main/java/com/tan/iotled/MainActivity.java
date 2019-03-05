@@ -96,17 +96,22 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.d("binary", "onClick: " + buf.toString());
 
+                        StringBuilder temp = new StringBuilder();
                         for (int x = 0; x < buf.size(); x++) {
                             if (buf.get(x) == 1) {
                                 mLED.get(7 - x).setImageResource(R.drawable.ic_launcher_background);
                             } else if (buf.get(x) == 0) {
                                 mLED.get(7 - x).setImageResource(R.drawable.ic_action_name);
                             }
+
+                            temp.append(buf.get(7-x));
                         }
+
+                        Log.d("binary", "onClick: " + temp);
 
                         //mqtt publish
                         try {
-                            encodedPayload = buf.toString().getBytes("UTF-8");
+                            encodedPayload = temp.toString().getBytes("UTF-8");
                             MqttMessage message = new MqttMessage(encodedPayload);
                             client.publish(topic, message);
                         } catch (UnsupportedEncodingException | MqttException e) {
